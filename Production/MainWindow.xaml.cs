@@ -29,6 +29,7 @@ namespace Production
             //Manager.MainFrame.Navigate(new MaterialPage());
             //ImportTours();
         }
+
         private void ImportTours()
         {
             var fileData = File.ReadAllLines(@"C:\Users\oleg-\OneDrive\Рабочий стол\Разработка ПМ\УП.01.01\2 Задание\Сессия 1\Материалы.txt");
@@ -79,12 +80,3 @@ private static Production_of_productsEntities _context;
             return _context;
         }
 */
-
-/*
- <TextBlock Text="{Binding Тип}" VerticalAlignment="Center" TextAlignment="Center" Width="390" 
-                           TextWrapping="Wrap" HorizontalAlignment="Center" Margin="5 5" FontSize="26" Grid.Row="0"></TextBlock>
-                        <TextBlock Text="{Binding Наименование}" Grid.Row="2" Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{Binding МинКол}" Grid.Row="3" FontSize="14" HorizontalAlignment="Right"></TextBlock>
-                        <TextBlock Text="{Binding Поставщики}" Grid.Row="3" FontSize="14" HorizontalAlignment="Left"></TextBlock>
- 
- */

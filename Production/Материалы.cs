@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Production;
+using System.Linq;
+
 namespace Production
 {
     using System;
@@ -35,5 +38,7 @@ namespace Production
         public virtual ICollection<ИсторияИзмКолМатер> ИсторияИзмКолМатер { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Поставщики> Поставщики { get; set; }
+
+        public string НаименованияПоставщиков => string.Join(", ", Поставщики.Select(p => p.НаименПоставщ).Where(n => !string.IsNullOrEmpty(n)).DefaultIfEmpty("Не указано"));
     }
 }
