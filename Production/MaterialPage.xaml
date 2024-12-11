@@ -1,0 +1,34 @@
+﻿<Page x:Class="Production.MaterialPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Production"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MaterialPage">
+
+    <Grid>
+        <ListView Grid.Row="1" Name="LViewTours" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Width="400">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"></RowDefinition>
+                            <RowDefinition Height="310"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Width="400" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" Margin="5">
+                            <Image.Source>
+                                <Binding Path="Материалы">
+
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

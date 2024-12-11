@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="55b31e3e7f804d188e5b93fae37f3a66" Name="Diagram1">
+        <EntityTypeShape EntityType="Production_of_productsModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.Агенты" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.ВремяРаботыСотрудн" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.Заявки" Width="1.5" PointX="8" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.ИсторИзменПриорит" Width="1.5" PointX="8" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.ИсторияИзмМинСтоимПродук" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.Материалы" Width="1.5" PointX="7.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.ПередвижСотрудников" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.Поставщики" Width="1.5" PointX="10" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.Продукция" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.Производство" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.Сотрудники" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Production_of_productsModel.ИсторияИзмКолМатер" Width="1.5" PointX="10" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="Production_of_productsModel.FK_Заявки_Агенты" ManuallyRouted="false" />
+        <AssociationConnector Association="Production_of_productsModel.FK_ИсторИзменПриорит_Агенты" ManuallyRouted="false" />
+        <AssociationConnector Association="Production_of_productsModel.FK_ВремяРаботыСотрудн_Сотрудники" ManuallyRouted="false" />
+        <AssociationConnector Association="Production_of_productsModel.FK_Заявки_Продукция" ManuallyRouted="false" />
+        <AssociationConnector Association="Production_of_productsModel.FK_ИсторияИзмМинСтоимПродук_Продукция" ManuallyRouted="false" />
+        <AssociationConnector Association="Production_of_productsModel.FK_ИсторияИзмКолМатер_Материалы" ManuallyRouted="false" />
+        <AssociationConnector Association="Production_of_productsModel.FK_ПередвижСотрудников_Сотрудники" ManuallyRouted="false" />
+        <AssociationConnector Association="Production_of_productsModel.ПоставщикиМатериалов" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
