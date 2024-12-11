@@ -23,6 +23,7 @@ namespace Production
         public MaterialPage()
         {
             InitializeComponent();
+            LViewTours.ItemsSource = Production_of_productsEntities1.GetContext().Материалы.ToList();
         }
     }
 }

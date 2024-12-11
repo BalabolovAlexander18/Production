@@ -24,9 +24,9 @@ namespace Production
         public MainWindow()
         {
             InitializeComponent();
-            //var currentTours = Production_of_productsEntities1.GetContext().Материалы.ToList();
-            LViewTours.ItemsSource = Production_of_productsEntities1.GetContext().Материалы.ToList();
-            //Manager.MainFrame.Navigate(new MaterialPage());
+
+            MainFrame.Navigate(new MaterialPage());
+            Manager.MainFrame = MainFrame;
             //ImportTours();
         }
 
