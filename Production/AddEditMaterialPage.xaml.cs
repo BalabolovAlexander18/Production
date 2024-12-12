@@ -20,14 +20,24 @@ namespace Production
     /// </summary>
     public partial class AddEditMaterialPage : Page
     {
+        public int WhoIsIt;
         private Материалы _currentMaterial = new Материалы();
-        public AddEditMaterialPage(Материалы selectedMaterial)
+        public AddEditMaterialPage(int Who, Материалы selectedMaterial)
         {
+            WhoIsIt = Who;
             InitializeComponent();
             if (selectedMaterial != null)
                 _currentMaterial = selectedMaterial;
 
             DataContext = _currentMaterial;
+            if (WhoIsIt == 2)
+            {
+                tebType.IsEnabled = false;
+                tebName.IsEnabled = false;
+                tebMinCol.IsEnabled = false;
+                tebSuppliers.IsEnabled = false;
+            }
+            
             //comboBox.ItemsSource = Production_of_productsEntities1.GetContext().Поставщики.ToList();
         }
 
@@ -50,6 +60,8 @@ namespace Production
                 Production_of_productsEntities1.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена");
                 Manager.MainFrame.GoBack();
+
+
             }
             catch (Exception ex) 
             {

@@ -40,5 +40,7 @@ namespace Production
         public virtual ICollection<Поставщики> Поставщики { get; set; }
 
         public string НаименованияПоставщиков => string.Join(", ", Поставщики.Select(p => p.НаименПоставщ).Where(n => !string.IsNullOrEmpty(n)).DefaultIfEmpty("Не указано"));
+        public string МинКолИЕдинИзмер => $"{МинКол.ToString()} {ЕдинИзмер}";
+        public string КолНаСкладеИЕдинИзмер => $"{КолНаСкладе.ToString()} {ЕдинИзмер}";
     }
 }

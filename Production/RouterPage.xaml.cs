@@ -25,6 +25,11 @@ namespace Production
         {
             InitializeComponent();
             WhoIsIt = who;
+            if (WhoIsIt == 1)
+                btnMaterials.IsEnabled = true;
+            //if (WhoIsIt == 2) 
+                //btnMaterials.IsEnabled = false;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

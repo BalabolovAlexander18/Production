@@ -28,11 +28,11 @@
         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4" FontSize="24" Text="Поставщики"></TextBlock>
         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="5" FontSize="24" Text="Остаток"></TextBlock>
 
-        <TextBox Text="{Binding Тип}" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
-        <TextBox Text="{Binding Наименование}" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
-        <TextBox Text="{Binding МинКол}" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
-        <TextBox Text="{Binding КолНаСкладе}" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
-        <TextBox Text="{Binding НаименованияПоставщиков, Mode=OneWay}" IsReadOnly="True" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
+        <TextBox x:Name="tebType" Text="{Binding Тип}" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
+        <TextBox x:Name="tebName" Text="{Binding Наименование}" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
+        <TextBox x:Name="tebMinCol" Text="{Binding МинКол}" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
+        <TextBox x:Name="tebRemains" Text="{Binding КолНаСкладе}" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
+        <TextBox x:Name="tebSuppliers" Text="{Binding НаименованияПоставщиков, Mode=OneWay}" IsReadOnly="True" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
 
         <Button Grid.ColumnSpan="2" Grid.Row="6" Content="Сохранить" Click="Button_Click" ></Button>
     </Grid>

@@ -40,7 +40,7 @@ namespace Production
             {
                 MessageBox.Show("Невверный логин или пароль!!! Попробуйте ввести их ещё раз!");
             }
-            Manager.MainFrame.Navigate(new RouterPage(2));
+            //Manager.MainFrame.Navigate(new RouterPage(2));
         }
     }
 }

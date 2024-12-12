@@ -20,15 +20,18 @@ namespace Production
     /// </summary>
     public partial class MaterialPage : Page
     {
+        public int WhoIsIt;
         public MaterialPage(int who)
         {
+            WhoIsIt = who;
             InitializeComponent();
             LViewTours.ItemsSource = Production_of_productsEntities1.GetContext().Материалы.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditMaterialPage((sender as Button).DataContext as Материалы));
+            Manager.MainFrame.Navigate(new AddEditMaterialPage(WhoIsIt, (sender as Button).DataContext as Материалы));
+            LViewTours.ItemsSource = Production_of_productsEntities1.GetContext().Материалы.ToList();
         }
     }
 }
