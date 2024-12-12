@@ -12,9 +12,11 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#bae3e8"></Grid>
+        <Grid Grid.Row="0" Background="#bae3e8">
+            <Button x:Name="btnBack" Content="Назад" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Button_Click"/>
+        </Grid>
         <Image Source="/завод.png" HorizontalAlignment="Left" Grid.Row="0"></Image>
-        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="MainFrame_ContentRendered"/>
         <Grid Grid.Row="2" Background="#445e93"></Grid>
     </Grid>
 </Window>
