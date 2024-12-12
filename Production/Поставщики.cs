@@ -11,7 +11,8 @@ namespace Production
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Поставщики
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,5 +30,7 @@ namespace Production
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Материалы> Материалы { get; set; }
+
+        public string ВсеМатериалы => string.Join(", ", Материалы.Select(p => p.Наименование).Where(n => !string.IsNullOrEmpty(n)).DefaultIfEmpty("Не Указано"));
     }
 }

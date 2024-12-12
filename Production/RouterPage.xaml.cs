@@ -32,9 +32,14 @@ namespace Production
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnMaterials_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new MaterialPage(WhoIsIt));
+        }
+
+        private void btnSuppliers_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new SuppliersPage());
         }
     }
 }
