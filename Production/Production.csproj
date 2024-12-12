@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -64,6 +65,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEditMaterialPage.xaml.cs">
+      <DependentUpon>AddEditMaterialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Manager.cs" />
     <Compile Include="MaterialPage.xaml.cs">
       <DependentUpon>MaterialPage.xaml</DependentUpon>
@@ -72,6 +79,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RouterPage.xaml.cs">
+      <DependentUpon>RouterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
       <DependentUpon>ProductModel.tt</DependentUpon>
@@ -112,6 +122,14 @@
     <Compile Include="Сотрудники.cs">
       <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
+    <Page Include="AddEditMaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -125,6 +143,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RouterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,6 +209,8 @@
       <DependentUpon>ProductModel.edmx</DependentUpon>
       <LastGenOutput>ProductModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="завод.png" />
+    <None Include="Resources\завод.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

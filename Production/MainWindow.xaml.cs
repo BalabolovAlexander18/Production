@@ -25,7 +25,7 @@ namespace Production
         {
             InitializeComponent();
 
-            MainFrame.Navigate(new MaterialPage());
+            MainFrame.Navigate(new LoginPage());
             Manager.MainFrame = MainFrame;
             //ImportTours();
         }

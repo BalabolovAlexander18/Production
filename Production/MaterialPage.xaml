@@ -10,6 +10,11 @@
 
     <Grid>
         <ListView Name="LViewTours" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="2">
@@ -19,12 +24,6 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="130"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="1" Orientation="Vertical">
-                                <TextBlock Grid.Column="1" Text="{Binding Тип, StringFormat={}Тип - {0}. }" TextWrapping="Wrap" FontSize="18"></TextBlock>
-                                <TextBlock Grid.Column="1" Text="{Binding Наименование, StringFormat={}Название: {0}}" FontSize="18"></TextBlock>
-                                <TextBlock Grid.Column="1" Text="{Binding МинКол, StringFormat={}Минимальное количество: {0} шт}" FontSize="18"></TextBlock>
-                                <TextBlock Grid.Column="1" Text="{Binding НаименованияПоставщиков, StringFormat={}Поставщики: {0}}" FontSize="18" TextWrapping="Wrap"/>
-                            </StackPanel>
                             <Image Grid.Column="0" Width="70" Height="50" Stretch="UniformToFill" HorizontalAlignment="Left" Margin="5">
                                 <Image.Source>
                                     <Binding Path="Изображение">
@@ -32,7 +31,16 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <TextBlock Grid.Column="2" Text="{Binding КолНаСкладе, StringFormat={}Остаток: {0} шт }" FontSize="16"></TextBlock>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <TextBlock Grid.Column="1" Text="{Binding Тип, StringFormat={}Тип - {0}. }" TextWrapping="Wrap" FontSize="18"></TextBlock>
+                                <TextBlock Grid.Column="1" Text="{Binding Наименование, StringFormat={}Название: {0}}" FontSize="18"></TextBlock>
+                                <TextBlock Grid.Column="1" Text="{Binding МинКол, StringFormat={}Минимальное количество: {0} шт}" FontSize="18"></TextBlock>
+                                <TextBlock Grid.Column="1" Text="{Binding НаименованияПоставщиков, StringFormat={}Поставщики: {0}}" FontSize="18" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Orientation="Vertical">
+                                <TextBlock Text="{Binding КолНаСкладе, StringFormat={}Остаток: {0} шт }" FontSize="16"></TextBlock>
+                                <Button Content="Редактировать" Width="auto" Click="Button_Click" ></Button>
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </DataTemplate>

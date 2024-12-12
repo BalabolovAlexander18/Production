@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Production"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
+        <Image Source="/завод.png" HorizontalAlignment="Left" Grid.Row="0"></Image>
         <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
+        <Grid Grid.Row="2" Background="#445e93"></Grid>
     </Grid>
 </Window>

@@ -16,19 +16,20 @@ using System.Windows.Shapes;
 namespace Production
 {
     /// <summary>
-    /// Логика взаимодействия для MaterialPage.xaml
+    /// Логика взаимодействия для RouterPage.xaml
     /// </summary>
-    public partial class MaterialPage : Page
+    public partial class RouterPage : Page
     {
-        public MaterialPage(int who)
+        public int WhoIsIt;
+        public RouterPage(int who)
         {
             InitializeComponent();
-            LViewTours.ItemsSource = Production_of_productsEntities1.GetContext().Материалы.ToList();
+            WhoIsIt = who;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditMaterialPage((sender as Button).DataContext as Материалы));
+            Manager.MainFrame.Navigate(new MaterialPage(WhoIsIt));
         }
     }
 }
