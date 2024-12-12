@@ -12,6 +12,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#bae3e8"></Grid>
         <Image Source="/завод.png" HorizontalAlignment="Left" Grid.Row="0"></Image>
         <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
         <Grid Grid.Row="2" Background="#445e93"></Grid>
