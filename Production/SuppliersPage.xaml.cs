@@ -47,5 +47,32 @@ namespace Production
         {
             UpdateSuppliers();
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            //Создать страницу для внесения и редактирования Производилей
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            //Реализовать удаление Производилей
+            var suppliersRemoving = livSuppliers.SelectedItems.Cast<Поставщики>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {suppliersRemoving.Count()} элементов?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Production_of_productsEntities1.GetContext().Поставщики.RemoveRange(suppliersRemoving);
+                    Production_of_productsEntities1.GetContext().SaveChanges();
+                    MessageBox.Show("Данные удалены!");
+
+                    livSuppliers.ItemsSource = Production_of_productsEntities1.GetContext().Поставщики.ToList();
+                }
+                catch (Exception ex) 
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -22,7 +23,7 @@
             <CheckBox x:Name="checkRating" Width="175" Content="Отсортировать по рейтингу" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"></CheckBox>
         </WrapPanel>
 
-        <ListView Grid.Row="1" x:Name="livSuppliers" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.RowSpan="2">
+        <ListView Grid.Row="1" x:Name="livSuppliers" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -58,5 +59,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid Grid.Row="2" Background="White">
+            <Button Click="btnAdd_Click" x:Name="btnAdd" Content="Добавить" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center"/>
+            <Button Click="btnDelete_Click" x:Name="btnDelete" Content="Удалить" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Page>
