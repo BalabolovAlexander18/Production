@@ -24,6 +24,28 @@ namespace Production
         {
             InitializeComponent();
             livSuppliers.ItemsSource = Production_of_productsEntities1.GetContext().Поставщики.ToList();
+            UpdateSuppliers();
+        }
+
+        private void UpdateSuppliers()
+        {
+            var currentSuppliers = Production_of_productsEntities1.GetContext().Поставщики.ToList();
+            currentSuppliers = currentSuppliers.Where(p => p.ВсеМатериалы.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+
+            if (checkRating.IsChecked == true)
+            {
+                currentSuppliers = currentSuppliers.OrderBy(p => p.РейтингКачества).ToList();
+            }
+            livSuppliers.ItemsSource = currentSuppliers;
+        }
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateSuppliers();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateSuppliers();
         }
     }
 }

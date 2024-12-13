@@ -27,7 +27,7 @@ namespace Production
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxLogin.Text == "Менеджер" && PasBox.Password == "777")
+            if (textBoxLogin.Text == "м" && PasBox.Password == "777")
             {
                 Manager.MainFrame.Navigate(new RouterPage(1));
             }

@@ -9,7 +9,20 @@
       Title="SuppliersPage">
 
     <Grid>
-        <ListView x:Name="livSuppliers" Grid.ColumnSpan="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="175" Text="Введите материал для поиска"></TextBlock>
+                <TextBox Width="225" x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
+            </StackPanel>
+            <CheckBox x:Name="checkRating" Width="175" Content="Отсортировать по рейтингу" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"></CheckBox>
+        </WrapPanel>
+
+        <ListView Grid.Row="1" x:Name="livSuppliers" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.RowSpan="2">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -26,15 +39,15 @@
                             </Grid.ColumnDefinitions>
                             <Border BorderBrush="Green" BorderThickness="2" CornerRadius="5" Margin="15">
                                 <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
-                                    <TextBlock Text="Рейтинг" FontSize="24" Margin="10"></TextBlock>
+                                    <TextBlock Text="Рейтинг" FontSize="22" Margin="5"></TextBlock>
                                     <TextBlock Text="{Binding РейтингКачества}" FontSize="30" Margin="5"></TextBlock>
                                 </StackPanel>
                             </Border>
                             <StackPanel Grid.Column="1"  Orientation="Vertical">
-                                <TextBlock FontSize="18" Text="{Binding НаименПоставщ, StringFormat={} {0}}" HorizontalAlignment="Left"></TextBlock>
-                                <TextBlock FontSize="18" Text="{Binding Тип, StringFormat={}{0}}" HorizontalAlignment="Left"></TextBlock>
-                                <TextBlock FontSize="18" Text="{Binding ИНН, StringFormat={} {0}}" HorizontalAlignment="Left"></TextBlock>
-                                <TextBlock FontSize="18" Text="{Binding ВсеМатериалы, StringFormat={} {0}}" HorizontalAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                                <TextBlock FontSize="18" Text="{Binding НаименПоставщ, StringFormat={}Наименование: {0}}" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock FontSize="18" Text="{Binding Тип, StringFormat={}Тип:{0}}" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock FontSize="18" Text="{Binding ИНН, StringFormat={}ИНН: {0}}" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock FontSize="18" Text="{Binding ВсеМатериалы, StringFormat={}Материалы: {0}}" HorizontalAlignment="Left" TextWrapping="Wrap"></TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Orientation="Vertical">
                                 <TextBlock FontSize="14" Text="Начали работать:"></TextBlock>
