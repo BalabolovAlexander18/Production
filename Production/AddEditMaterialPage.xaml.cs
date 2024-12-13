@@ -50,7 +50,10 @@ namespace Production
                 errors.AppendLine("Введите название");
 
             if (errors.Length > 0)
+            {
                 MessageBox.Show(errors.ToString());
+                return;
+            }  
 
             if (_currentMaterial.id == 0)
                 Production_of_productsEntities1.GetContext().Материалы.Add(_currentMaterial);
@@ -60,8 +63,7 @@ namespace Production
                 Production_of_productsEntities1.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена");
                 Manager.MainFrame.GoBack();
-
-
+                
             }
             catch (Exception ex) 
             {

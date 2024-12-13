@@ -68,6 +68,9 @@
     <Compile Include="AddEditMaterialPage.xaml.cs">
       <DependentUpon>AddEditMaterialPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddEditSuppliersPage.xaml.cs">
+      <DependentUpon>AddEditSuppliersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
       <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
     <Page Include="AddEditMaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddEditSuppliersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -51,6 +51,7 @@ namespace Production
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             //Создать страницу для внесения и редактирования Производилей
+            Manager.MainFrame.Navigate(new AddEditSuppliersPage(null));
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -73,6 +74,16 @@ namespace Production
                     MessageBox.Show(ex.Message.ToString());
                 }
             }
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditSuppliersPage((sender as Button).DataContext as Поставщики));
+        }
+
+        private void UpdateSuppliers(object sender, RoutedEventArgs e)
+        {
+            UpdateSuppliers();
         }
     }
 }
