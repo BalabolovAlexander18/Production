@@ -23,13 +23,53 @@ namespace Production
         public MaterialPage()
         {
             InitializeComponent();
-            LViewTours.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
+            LViewMaterial.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddEditMaterialPage((sender as Button).DataContext as Материалы));
-            LViewTours.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
+            LViewMaterial.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditMaterialPage(null));
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var materialRemoving = LViewMaterial.SelectedItems.Cast<Материалы>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {materialRemoving.Count()} элементов", "Внимание", 
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    foreach (var material in materialRemoving)
+                    {
+                        var itemsToRemove = Production_of_productsEntities2.GetContext().ИсторияИзмКолМатер.Where(p => p.id_материала == material.id).ToList();
+                        foreach (var item in itemsToRemove)
+                        {
+                            Production_of_productsEntities2.GetContext().ИсторияИзмКолМатер.Remove(item);
+                        }
+                    }
+
+                    Production_of_productsEntities2.GetContext().Материалы.RemoveRange(materialRemoving);
+                    Production_of_productsEntities2.GetContext().SaveChanges();
+                    MessageBox.Show("Данные удалены");
+
+                    LViewMaterial.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            LViewMaterial.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
         }
     }
 }

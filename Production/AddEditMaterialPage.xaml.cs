@@ -26,9 +26,15 @@ namespace Production
         {
             InitializeComponent();
             if (selectedMaterial != null)
+            {
                 _currentMaterial = selectedMaterial;
+                ТекущееКолНаСкладе = _currentMaterial.КолНаСкладе;
+            }
+            else
+            {
+                ТекущееКолНаСкладе = -1;
+            }
 
-            ТекущееКолНаСкладе = _currentMaterial.КолНаСкладе;
 
             DataContext = _currentMaterial;
             if (UserRights.User_ID == 2)
@@ -42,7 +48,7 @@ namespace Production
             //comboBox.ItemsSource = Production_of_productsEntities2.GetContext().Поставщики.ToList();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_currentMaterial.Тип))
@@ -71,9 +77,8 @@ namespace Production
                 MessageBox.Show(ex.ToString());
             }
 
-            if (ТекущееКолНаСкладе != _currentMaterial.КолНаСкладе)
+            if (ТекущееКолНаСкладе != _currentMaterial.КолНаСкладе && ТекущееКолНаСкладе != -1)
             {
-                MessageBox.Show("Введено новое кол на складе!");
                 var TempHistoryMaterial = new ИсторияИзмКолМатер
                 {
                     Дата = DateTime.Now,

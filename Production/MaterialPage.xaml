@@ -8,8 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MaterialPage">
 
-    <Grid>
-        <ListView Name="LViewTours" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" Name="LViewMaterial" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -46,5 +50,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid Grid.Row="1" Background="White">
+            <Button Click="btnAdd_Click" x:Name="btnAdd" Content="Добавить" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center"/>
+            <Button Click="btnDelete_Click" x:Name="btnDelete" Content="Удалить" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Page>
