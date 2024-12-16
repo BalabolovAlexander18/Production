@@ -29,12 +29,13 @@ namespace Production
         {
             if (textBoxLogin.Text == "м" && PasBox.Password == "777")
             {
-                Manager.MainFrame.Navigate(new RouterPage(1));
+                UserRights.User_ID = 1;
+                Manager.MainFrame.Navigate(new RouterPage());
             }
             else if (textBoxLogin.Text == "с" && PasBox.Password == "777")
             {
-                
-                Manager.MainFrame.Navigate(new RouterPage(2));
+                UserRights.User_ID = 2;
+                Manager.MainFrame.Navigate(new RouterPage());
             }
             else
             {

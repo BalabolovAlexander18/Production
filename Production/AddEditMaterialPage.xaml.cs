@@ -20,17 +20,18 @@ namespace Production
     /// </summary>
     public partial class AddEditMaterialPage : Page
     {
-        public int WhoIsIt;
+        public int? ТекущееКолНаСкладе;
         private Материалы _currentMaterial = new Материалы();
-        public AddEditMaterialPage(int Who, Материалы selectedMaterial)
+        public AddEditMaterialPage(Материалы selectedMaterial)
         {
-            WhoIsIt = Who;
             InitializeComponent();
             if (selectedMaterial != null)
                 _currentMaterial = selectedMaterial;
 
+            ТекущееКолНаСкладе = _currentMaterial.КолНаСкладе;
+
             DataContext = _currentMaterial;
-            if (WhoIsIt == 2)
+            if (UserRights.User_ID == 2)
             {
                 tebType.IsEnabled = false;
                 tebName.IsEnabled = false;
@@ -38,7 +39,7 @@ namespace Production
                 tebSuppliers.IsEnabled = false;
             }
             
-            //comboBox.ItemsSource = Production_of_productsEntities1.GetContext().Поставщики.ToList();
+            //comboBox.ItemsSource = Production_of_productsEntities2.GetContext().Поставщики.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -56,11 +57,11 @@ namespace Production
             }  
 
             if (_currentMaterial.id == 0)
-                Production_of_productsEntities1.GetContext().Материалы.Add(_currentMaterial);
+                Production_of_productsEntities2.GetContext().Материалы.Add(_currentMaterial);
 
             try
             {
-                Production_of_productsEntities1.GetContext().SaveChanges();
+                Production_of_productsEntities2.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена");
                 Manager.MainFrame.GoBack();
                 
@@ -68,6 +69,19 @@ namespace Production
             catch (Exception ex) 
             {
                 MessageBox.Show(ex.ToString());
+            }
+
+            if (ТекущееКолНаСкладе != _currentMaterial.КолНаСкладе)
+            {
+                MessageBox.Show("Введено новое кол на складе!");
+                var TempHistoryMaterial = new ИсторияИзмКолМатер
+                {
+                    Дата = DateTime.Now,
+                    id_материала = _currentMaterial.id,
+                    НовоеКол = _currentMaterial.КолНаСкладе
+                };
+                Production_of_productsEntities2.GetContext().ИсторияИзмКолМатер.Add(TempHistoryMaterial);
+                Production_of_productsEntities2.GetContext().SaveChanges();
             }
         }
     }

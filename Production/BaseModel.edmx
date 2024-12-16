@@ -62,8 +62,6 @@
           <Property Name="Дата" Type="date" />
           <Property Name="НоваяПриорит" Type="int" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Production_of_products.dbo.ИсторияИзмКолМатер" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="ИсторияИзмКолМатер">
           <Key>
             <PropertyRef Name="id" />
@@ -293,6 +291,7 @@
           <EntitySet Name="ВремяРаботыСотрудн" EntityType="Self.ВремяРаботыСотрудн" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Заявки" EntityType="Self.Заявки" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ИсторИзменПриорит" EntityType="Self.ИсторИзменПриорит" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ИсторияИзмКолМатер" EntityType="Self.ИсторияИзмКолМатер" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ИсторияИзмМинСтоимПродук" EntityType="Self.ИсторияИзмМинСтоимПродук" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Материалы" EntityType="Self.Материалы" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ПередвижСотрудников" EntityType="Self.ПередвижСотрудников" Schema="dbo" store:Type="Tables" />
@@ -300,14 +299,6 @@
           <EntitySet Name="Продукция" EntityType="Self.Продукция" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Производство" EntityType="Self.Производство" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ИсторияИзмКолМатер" EntityType="Self.ИсторияИзмКолМатер" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ИсторияИзмКолМатер].[id] AS [id], 
-    [ИсторияИзмКолМатер].[Дата] AS [Дата], 
-    [ИсторияИзмКолМатер].[id_материала] AS [id_материала], 
-    [ИсторияИзмКолМатер].[НовоеКол] AS [НовоеКол]
-    FROM [dbo].[ИсторияИзмКолМатер] AS [ИсторияИзмКолМатер]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="ПоставщикиМатериалов" EntityType="Self.ПоставщикиМатериалов" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ПоставщикиМатериалов].[id_Материала] AS [id_Материала], 
@@ -419,6 +410,16 @@
           <Property Name="НоваяПриорит" Type="Int32" />
           <NavigationProperty Name="Агенты" Relationship="Self.FK_ИсторИзменПриорит_Агенты" FromRole="ИсторИзменПриорит" ToRole="Агенты" />
         </EntityType>
+        <EntityType Name="ИсторияИзмКолМатер">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Дата" Type="DateTime" Precision="0" />
+          <Property Name="id_материала" Type="Int32" />
+          <Property Name="НовоеКол" Type="Int32" />
+          <NavigationProperty Name="Материалы" Relationship="Self.FK_ИсторияИзмКолМатер_Материалы" FromRole="ИсторияИзмКолМатер" ToRole="Материалы" />
+        </EntityType>
         <EntityType Name="ИсторияИзмМинСтоимПродук">
           <Key>
             <PropertyRef Name="id" />
@@ -438,7 +439,7 @@
           <Property Name="Наименование" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Тип" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Изображение" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Цена" Type="Int32" />
+          <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="КолНаСкладе" Type="Int32" />
           <Property Name="МинКол" Type="Int32" />
           <Property Name="КолвУпаковке" Type="Int32" />
@@ -512,16 +513,6 @@
           <NavigationProperty Name="ВремяРаботыСотрудн" Relationship="Self.FK_ВремяРаботыСотрудн_Сотрудники" FromRole="Сотрудники" ToRole="ВремяРаботыСотрудн" />
           <NavigationProperty Name="ПередвижСотрудников" Relationship="Self.FK_ПередвижСотрудников_Сотрудники" FromRole="Сотрудники" ToRole="ПередвижСотрудников" />
         </EntityType>
-        <EntityType Name="ИсторияИзмКолМатер">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Дата" Type="DateTime" Precision="0" />
-          <Property Name="id_материала" Type="Int32" />
-          <Property Name="НовоеКол" Type="Int32" />
-          <NavigationProperty Name="Материалы" Relationship="Self.FK_ИсторияИзмКолМатер_Материалы" FromRole="ИсторияИзмКолМатер" ToRole="Материалы" />
-        </EntityType>
         <Association Name="FK_Заявки_Агенты">
           <End Role="Агенты" Type="Self.Агенты" Multiplicity="1" />
           <End Role="Заявки" Type="Self.Заявки" Multiplicity="*" />
@@ -570,18 +561,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ИсторияИзмМинСтоимПродук_Продукция">
-          <End Role="Продукция" Type="Self.Продукция" Multiplicity="0..1" />
-          <End Role="ИсторияИзмМинСтоимПродук" Type="Self.ИсторияИзмМинСтоимПродук" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Продукция">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ИсторияИзмМинСтоимПродук">
-              <PropertyRef Name="id_продукции" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ИсторияИзмКолМатер_Материалы">
           <End Role="Материалы" Type="Self.Материалы" Multiplicity="0..1" />
           <End Role="ИсторияИзмКолМатер" Type="Self.ИсторияИзмКолМатер" Multiplicity="*" />
@@ -591,6 +570,18 @@
             </Principal>
             <Dependent Role="ИсторияИзмКолМатер">
               <PropertyRef Name="id_материала" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ИсторияИзмМинСтоимПродук_Продукция">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="0..1" />
+          <End Role="ИсторияИзмМинСтоимПродук" Type="Self.ИсторияИзмМинСтоимПродук" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ИсторияИзмМинСтоимПродук">
+              <PropertyRef Name="id_продукции" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -610,12 +601,13 @@
           <End Role="Материалы" Type="Self.Материалы" Multiplicity="*" />
           <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="Production_of_productsEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Production_of_productsEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Агенты" EntityType="Self.Агенты" />
           <EntitySet Name="ВремяРаботыСотрудн" EntityType="Self.ВремяРаботыСотрудн" />
           <EntitySet Name="Заявки" EntityType="Self.Заявки" />
           <EntitySet Name="ИсторИзменПриорит" EntityType="Self.ИсторИзменПриорит" />
+          <EntitySet Name="ИсторияИзмКолМатер" EntityType="Self.ИсторияИзмКолМатер" />
           <EntitySet Name="ИсторияИзмМинСтоимПродук" EntityType="Self.ИсторияИзмМинСтоимПродук" />
           <EntitySet Name="Материалы" EntityType="Self.Материалы" />
           <EntitySet Name="ПередвижСотрудников" EntityType="Self.ПередвижСотрудников" />
@@ -623,7 +615,6 @@
           <EntitySet Name="Продукция" EntityType="Self.Продукция" />
           <EntitySet Name="Производство" EntityType="Self.Производство" />
           <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
-          <EntitySet Name="ИсторияИзмКолМатер" EntityType="Self.ИсторияИзмКолМатер" />
           <AssociationSet Name="FK_Заявки_Агенты" Association="Self.FK_Заявки_Агенты">
             <End Role="Агенты" EntitySet="Агенты" />
             <End Role="Заявки" EntitySet="Заявки" />
@@ -640,13 +631,13 @@
             <End Role="Продукция" EntitySet="Продукция" />
             <End Role="Заявки" EntitySet="Заявки" />
           </AssociationSet>
-          <AssociationSet Name="FK_ИсторияИзмМинСтоимПродук_Продукция" Association="Self.FK_ИсторияИзмМинСтоимПродук_Продукция">
-            <End Role="Продукция" EntitySet="Продукция" />
-            <End Role="ИсторияИзмМинСтоимПродук" EntitySet="ИсторияИзмМинСтоимПродук" />
-          </AssociationSet>
           <AssociationSet Name="FK_ИсторияИзмКолМатер_Материалы" Association="Self.FK_ИсторияИзмКолМатер_Материалы">
             <End Role="Материалы" EntitySet="Материалы" />
             <End Role="ИсторияИзмКолМатер" EntitySet="ИсторияИзмКолМатер" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ИсторияИзмМинСтоимПродук_Продукция" Association="Self.FK_ИсторияИзмМинСтоимПродук_Продукция">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="ИсторияИзмМинСтоимПродук" EntitySet="ИсторияИзмМинСтоимПродук" />
           </AssociationSet>
           <AssociationSet Name="FK_ПередвижСотрудников_Сотрудники" Association="Self.FK_ПередвижСотрудников_Сотрудники">
             <End Role="Сотрудники" EntitySet="Сотрудники" />
@@ -662,7 +653,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище Production_of_productsModelContainer" CdmEntityContainer="Production_of_productsEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Production_of_productsModelContainer" CdmEntityContainer="Production_of_productsEntities2">
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="Production_of_productsModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -722,6 +713,16 @@
                 <ScalarProperty Name="id_агента" ColumnName="id_агента" />
                 <ScalarProperty Name="Дата" ColumnName="Дата" />
                 <ScalarProperty Name="НоваяПриорит" ColumnName="НоваяПриорит" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ИсторияИзмКолМатер">
+            <EntityTypeMapping TypeName="Production_of_productsModel.ИсторияИзмКолМатер">
+              <MappingFragment StoreEntitySet="ИсторияИзмКолМатер">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="id_материала" ColumnName="id_материала" />
+                <ScalarProperty Name="НовоеКол" ColumnName="НовоеКол" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -813,16 +814,6 @@
                 <ScalarProperty Name="БанковсРеквизиты" ColumnName="БанковсРеквизиты" />
                 <ScalarProperty Name="Семья" ColumnName="Семья" />
                 <ScalarProperty Name="ПроблСоЗдоровьем" ColumnName="ПроблСоЗдоровьем" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ИсторияИзмКолМатер">
-            <EntityTypeMapping TypeName="Production_of_productsModel.ИсторияИзмКолМатер">
-              <MappingFragment StoreEntitySet="ИсторияИзмКолМатер">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Дата" ColumnName="Дата" />
-                <ScalarProperty Name="id_материала" ColumnName="id_материала" />
-                <ScalarProperty Name="НовоеКол" ColumnName="НовоеКол" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

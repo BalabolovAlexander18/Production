@@ -13,17 +13,18 @@ namespace Production
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Production_of_productsEntities1 : DbContext
+    public partial class Production_of_productsEntities2 : DbContext
     {
-        private static Production_of_productsEntities1 _context;
-        public Production_of_productsEntities1()
-            : base("name=Production_of_productsEntities1")
+        private static Production_of_productsEntities2 _context;
+
+        public Production_of_productsEntities2()
+            : base("name=Production_of_productsEntities2")
         {
         }
-        public static Production_of_productsEntities1 GetContext()
+        public static Production_of_productsEntities2 GetContext()
         {
             if (_context == null)
-                _context = new Production_of_productsEntities1();
+                _context = new Production_of_productsEntities2();
             return _context;
         }
 
@@ -37,6 +38,7 @@ namespace Production
         public virtual DbSet<ВремяРаботыСотрудн> ВремяРаботыСотрудн { get; set; }
         public virtual DbSet<Заявки> Заявки { get; set; }
         public virtual DbSet<ИсторИзменПриорит> ИсторИзменПриорит { get; set; }
+        public virtual DbSet<ИсторияИзмКолМатер> ИсторияИзмКолМатер { get; set; }
         public virtual DbSet<ИсторияИзмМинСтоимПродук> ИсторияИзмМинСтоимПродук { get; set; }
         public virtual DbSet<Материалы> Материалы { get; set; }
         public virtual DbSet<ПередвижСотрудников> ПередвижСотрудников { get; set; }
@@ -44,6 +46,5 @@ namespace Production
         public virtual DbSet<Продукция> Продукция { get; set; }
         public virtual DbSet<Производство> Производство { get; set; }
         public virtual DbSet<Сотрудники> Сотрудники { get; set; }
-        public virtual DbSet<ИсторияИзмКолМатер> ИсторияИзмКолМатер { get; set; }
     }
 }

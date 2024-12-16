@@ -53,11 +53,11 @@ namespace Production
             _currentSupplier.ДатаНачалаРаб = DateTime.Now;
 
             if (_currentSupplier.id == 0)
-                Production_of_productsEntities1.GetContext().Поставщики.Add(_currentSupplier);
+                Production_of_productsEntities2.GetContext().Поставщики.Add(_currentSupplier);
 
             try
             {
-                Production_of_productsEntities1.GetContext().SaveChanges();
+                Production_of_productsEntities2.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена");
                 Manager.MainFrame.GoBack();
             }

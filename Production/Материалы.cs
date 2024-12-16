@@ -14,7 +14,7 @@ namespace Production
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Материалы
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,7 +28,7 @@ namespace Production
         public string Наименование { get; set; }
         public string Тип { get; set; }
         public byte[] Изображение { get; set; }
-        public Nullable<int> Цена { get; set; }
+        public Nullable<decimal> Цена { get; set; }
         public Nullable<int> КолНаСкладе { get; set; }
         public Nullable<int> МинКол { get; set; }
         public Nullable<int> КолвУпаковке { get; set; }

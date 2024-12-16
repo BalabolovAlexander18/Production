@@ -20,18 +20,22 @@ namespace Production
     /// </summary>
     public partial class MaterialPage : Page
     {
-        public int WhoIsIt;
-        public MaterialPage(int who)
+        public MaterialPage()
         {
-            WhoIsIt = who;
             InitializeComponent();
-            LViewTours.ItemsSource = Production_of_productsEntities1.GetContext().Материалы.ToList();
+            LViewTours.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditMaterialPage(WhoIsIt, (sender as Button).DataContext as Материалы));
-            LViewTours.ItemsSource = Production_of_productsEntities1.GetContext().Материалы.ToList();
+            Manager.MainFrame.Navigate(new AddEditMaterialPage((sender as Button).DataContext as Материалы));
+            LViewTours.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
         }
     }
 }
+
+/*
+ public string НаименованияПоставщиков => string.Join(", ", Поставщики.Select(p => p.НаименПоставщ).Where(n => !string.IsNullOrEmpty(n)).DefaultIfEmpty("Не указано"));
+        public string МинКолИЕдинИзмер => $"{МинКол.ToString()} {ЕдинИзмер}";
+        public string КолНаСкладеИЕдинИзмер => $"{КолНаСкладе.ToString()} {ЕдинИзмер}";
+ */

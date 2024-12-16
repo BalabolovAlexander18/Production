@@ -59,8 +59,8 @@ namespace Production
                     MessageBox.Show(ex.Message);
                 }
 
-                Production_of_productsEntities1.GetContext().Материалы.Add(tempProduct);
-                Production_of_productsEntities1.GetContext().SaveChanges();
+                Production_of_productsEntities2.GetContext().Материалы.Add(tempProduct);
+                Production_of_productsEntities2.GetContext().SaveChanges();
             }
         }
 

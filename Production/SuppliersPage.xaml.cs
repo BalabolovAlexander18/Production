@@ -23,13 +23,13 @@ namespace Production
         public SuppliersPage()
         {
             InitializeComponent();
-            livSuppliers.ItemsSource = Production_of_productsEntities1.GetContext().Поставщики.ToList();
+            livSuppliers.ItemsSource = Production_of_productsEntities2.GetContext().Поставщики.ToList();
             UpdateSuppliers();
         }
 
         private void UpdateSuppliers()
         {
-            var currentSuppliers = Production_of_productsEntities1.GetContext().Поставщики.ToList();
+            var currentSuppliers = Production_of_productsEntities2.GetContext().Поставщики.ToList();
             currentSuppliers = currentSuppliers.Where(p => p.ВсеМатериалы.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
 
             if (checkRating.IsChecked == true)
@@ -63,11 +63,11 @@ namespace Production
             {
                 try
                 {
-                    Production_of_productsEntities1.GetContext().Поставщики.RemoveRange(suppliersRemoving);
-                    Production_of_productsEntities1.GetContext().SaveChanges();
+                    Production_of_productsEntities2.GetContext().Поставщики.RemoveRange(suppliersRemoving);
+                    Production_of_productsEntities2.GetContext().SaveChanges();
                     MessageBox.Show("Данные удалены!");
 
-                    livSuppliers.ItemsSource = Production_of_productsEntities1.GetContext().Поставщики.ToList();
+                    livSuppliers.ItemsSource = Production_of_productsEntities2.GetContext().Поставщики.ToList();
                 }
                 catch (Exception ex) 
                 {
@@ -87,3 +87,6 @@ namespace Production
         }
     }
 }
+/*
+  public string ВсеМатериалы => string.Join(", ", Материалы.Select(p => p.Наименование).Where(n => !string.IsNullOrEmpty(n)).DefaultIfEmpty("Не Указано"));
+ */

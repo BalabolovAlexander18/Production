@@ -20,21 +20,19 @@ namespace Production
     /// </summary>
     public partial class RouterPage : Page
     {
-        public int WhoIsIt;
-        public RouterPage(int who)
+        public RouterPage()
         {
             InitializeComponent();
-            WhoIsIt = who;
-            if (WhoIsIt == 1)
-                btnMaterials.IsEnabled = true;
-            //if (WhoIsIt == 2) 
-                //btnMaterials.IsEnabled = false;
+            if (UserRights.User_ID == 2)
+            {
+                btnSuppliers.IsEnabled = false;
+            }
 
         }
 
         private void btnMaterials_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new MaterialPage(WhoIsIt));
+            Manager.MainFrame.Navigate(new MaterialPage());
         }
 
         private void btnSuppliers_Click(object sender, RoutedEventArgs e)
