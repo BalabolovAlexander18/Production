@@ -58,6 +58,10 @@ namespace Production
         {
             //Реализовать удаление Производилей
             var suppliersRemoving = livSuppliers.SelectedItems.Cast<Поставщики>().ToList();
+            if (suppliersRemoving.Count() == 0)
+            {
+                return;
+            }
             if (MessageBox.Show($"Вы точно хотите удалить следующие {suppliersRemoving.Count()} элементов?", "Внимание",
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {

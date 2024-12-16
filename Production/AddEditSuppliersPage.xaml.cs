@@ -36,13 +36,17 @@ namespace Production
         {
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_currentSupplier.НаименПоставщ))
-                errors.Append("Укажите наименование поставщика");
+                errors.AppendLine("Укажите наименование поставщика");
             if (string.IsNullOrWhiteSpace(_currentSupplier.Тип))
-                errors.Append("Укажите тип");
-            if (_currentSupplier.ИНН == null)
-                errors.Append("Укажите ИНН");
-            if (_currentSupplier.РейтингКачества < 1)
-                errors.Append("Укажите рейтинг");
+                errors.AppendLine("Укажите тип");
+            if (!long.TryParse(tebINN.Text, out long n))
+                errors.AppendLine("Не верно указан ИНН");
+            if (int.TryParse(tebRating.Text, out int m))
+            {
+                if (m < 0)
+                    errors.AppendLine("Рейтинг должен быть положительным натуральным числом");
+            }
+            else errors.AppendLine("Не верно указан рейтинг");
 
             if (errors.Length > 0)
             {

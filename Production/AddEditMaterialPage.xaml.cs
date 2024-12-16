@@ -56,6 +56,21 @@ namespace Production
             if (string.IsNullOrWhiteSpace(_currentMaterial.Наименование))
                 errors.AppendLine("Введите название");
 
+            if (int.TryParse(tebMinCol.Text, out int m))
+            {
+                if (m < 0)
+                    errors.AppendLine("Минимальным количеством должно быть положительное число");
+            }
+            else { errors.AppendLine("Не правильно введено минимальное количество"); }
+            
+            if (int.TryParse(tebRemains.Text, out int n))
+            {
+                if (n < 0)
+                    errors.AppendLine("Остатком может быть только натуральное положительное число");
+            }
+            else errors.AppendLine("Не правильно введён остаток");
+
+
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());

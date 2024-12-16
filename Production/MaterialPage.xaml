@@ -31,7 +31,9 @@
                             <Image Grid.Column="0" Width="70" Height="50" Stretch="UniformToFill" HorizontalAlignment="Left" Margin="5">
                                 <Image.Source>
                                     <Binding Path="Изображение">
-
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>Resources/заглушка.png</ImageSource>
+                                        </Binding.TargetNullValue>
                                     </Binding>
                                 </Image.Source>
                             </Image>
