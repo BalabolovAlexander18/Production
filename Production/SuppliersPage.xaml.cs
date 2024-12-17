@@ -51,6 +51,7 @@ namespace Production
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             //Создать страницу для внесения и редактирования Производилей
+            UserRights.HeadingPage = "AddS";
             Manager.MainFrame.Navigate(new AddEditSuppliersPage(null));
         }
 
@@ -82,6 +83,7 @@ namespace Production
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            UserRights.HeadingPage = "EditS";
             Manager.MainFrame.Navigate(new AddEditSuppliersPage((sender as Button).DataContext as Поставщики));
         }
 

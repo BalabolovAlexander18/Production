@@ -26,6 +26,7 @@ namespace Production
             if (UserRights.User_ID == 2)
             {
                 btnSuppliers.IsEnabled = false;
+                btnHistoryMaterial.IsEnabled = false;
             }
 
         }
@@ -38,6 +39,11 @@ namespace Production
         private void btnSuppliers_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new SuppliersPage());
+        }
+
+        private void btnHistoryMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new HistoryMaterialsPage());
         }
     }
 }

@@ -10,8 +10,10 @@
 namespace Production
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class ИсторияИзмКолМатер
     {
         public int id { get; set; }
@@ -20,5 +22,6 @@ namespace Production
         public Nullable<int> НовоеКол { get; set; }
     
         public virtual Материалы Материалы { get; set; }
+        public string СписокМатериалов => Материалы.Наименование;
     }
 }

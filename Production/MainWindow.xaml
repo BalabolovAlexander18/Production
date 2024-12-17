@@ -14,9 +14,10 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="#bae3e8">
             <Button x:Name="btnBack" Content="Назад" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Button_Click"/>
+            <Label x:Name="labHeading" FontSize="30" Content="Заголовок" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         <Image Source="/завод.png" HorizontalAlignment="Left" Grid.Row="0"></Image>
-        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="MainFrame_ContentRendered"/>
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="MainFrame_ContentRendered" Navigated="MainFrame_Navigated"/>
         <Grid Grid.Row="2" Background="#445e93"></Grid>
     </Grid>
 </Window>

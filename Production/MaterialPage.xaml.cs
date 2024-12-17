@@ -24,22 +24,32 @@ namespace Production
         {
             InitializeComponent();
             LViewMaterial.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
+            if (UserRights.User_ID == 2)
+            {
+                gridEditDel.IsEnabled = false;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            UserRights.HeadingPage = "EditM";
             Manager.MainFrame.Navigate(new AddEditMaterialPage((sender as Button).DataContext as Материалы));
             LViewMaterial.ItemsSource = Production_of_productsEntities2.GetContext().Материалы.ToList();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            UserRights.HeadingPage = "AddM";
             Manager.MainFrame.Navigate(new AddEditMaterialPage(null));
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var materialRemoving = LViewMaterial.SelectedItems.Cast<Материалы>().ToList();
+            if (materialRemoving.Count == 0)
+            {
+                return;
+            }
             if (MessageBox.Show($"Вы точно хотите удалить следующие {materialRemoving.Count()} элементов", "Внимание", 
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {

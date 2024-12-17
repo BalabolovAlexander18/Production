@@ -9,5 +9,6 @@ namespace Production
     internal class UserRights
     {
         public static int User_ID;
+        public static string HeadingPage;
     }
 }

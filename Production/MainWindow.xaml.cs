@@ -24,7 +24,7 @@ namespace Production
         public MainWindow()
         {
             InitializeComponent();
-
+            
             MainFrame.Navigate(new LoginPage());
             Manager.MainFrame = MainFrame;
             //ImportTours();
@@ -75,6 +75,60 @@ namespace Production
                 btnBack.Visibility = Visibility.Visible;
             else
                 btnBack.Visibility = Visibility.Hidden;
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            labHeading.Margin = new Thickness(0, 0, 0, 0);
+            var Page = e.Content as Page;
+            if (Page != null)
+            {
+                if (Page is LoginPage)
+                {
+                    labHeading.Content = "Авторизация";
+                }
+                else if (Page is RouterPage)
+                {
+                    labHeading.Content = "Навигация";
+                }
+                else if (Page is MaterialPage)
+                {
+                    labHeading.Content = "Материалы";
+                }
+                else if (Page is SuppliersPage)
+                {
+                    labHeading.Content = "Поставщики";
+                }
+                else if (Page is HistoryMaterialsPage)
+                {
+                    labHeading.Margin = new Thickness(80, 0, 200, 0);
+                    labHeading.Content = "История изменения материалов";
+                }
+                else if (Page is AddEditMaterialPage)
+                {
+                    if (UserRights.HeadingPage == "AddM")
+                    {
+                        labHeading.Content = "Добавление материала";
+                    }
+                    else if (UserRights.HeadingPage == "EditM")
+                    {
+                        labHeading.Margin = new Thickness(80, 0, 200, 0);
+                        labHeading.Content = "Редактирование материала";
+                    }     
+                }
+                else if (Page is AddEditSuppliersPage)
+                {
+                    if (UserRights.HeadingPage == "AddS")
+                    {
+                        labHeading.Content = "Добавление поставщика";
+                    }
+                    else if (UserRights.HeadingPage == "EditS")
+                    {
+                        labHeading.Margin = new Thickness(80, 0, 200, 0);
+                        labHeading.Content = "Редактирование поставщика";
+                    }
+                }
+            }
         }
     }
 }

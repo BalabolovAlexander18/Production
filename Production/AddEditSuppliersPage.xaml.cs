@@ -21,6 +21,14 @@ namespace Production
     public partial class AddEditSuppliersPage : Page
     {
         private Поставщики _currentSupplier = new Поставщики();
+        private CurrentSupplier currentSupplier2;
+        private struct CurrentSupplier
+        {
+            public string НаименПоставщ;
+            public string Тип;
+            public long? ИНН;
+            public int? РейтингКачества;
+        }
         public AddEditSuppliersPage(Поставщики selectedSupplier)
         {
             InitializeComponent();
@@ -29,7 +37,10 @@ namespace Production
                 _currentSupplier = selectedSupplier;
 
             DataContext = _currentSupplier;
-
+            currentSupplier2.НаименПоставщ = _currentSupplier.НаименПоставщ;
+            currentSupplier2.Тип = _currentSupplier.Тип;
+            currentSupplier2.ИНН = _currentSupplier.ИНН;
+            currentSupplier2.РейтингКачества = _currentSupplier.РейтингКачества;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -51,6 +62,16 @@ namespace Production
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
+                return;
+            }
+
+            if (currentSupplier2.НаименПоставщ == _currentSupplier.НаименПоставщ && currentSupplier2.Тип == _currentSupplier.Тип &&
+                currentSupplier2.ИНН == _currentSupplier.ИНН && currentSupplier2.РейтингКачества == _currentSupplier.РейтингКачества)
+            {
+                if (MessageBox.Show("Данные не были изменены", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+                {
+                    Manager.MainFrame.GoBack();
+                }
                 return;
             }
 

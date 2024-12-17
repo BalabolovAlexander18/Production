@@ -22,6 +22,17 @@ namespace Production
     {
         public int? ТекущееКолНаСкладе;
         private Материалы _currentMaterial = new Материалы();
+        CurrentMaterial currentMaterial2 = new CurrentMaterial();
+        //private Материалы _currentMaterial2;
+        private struct CurrentMaterial
+        {
+            public string Тип;
+            public string Наименование;
+            public string МинКол;
+            public string КолНаСкладе;
+            public string НаименованияПоставщиков;
+        }
+
         public AddEditMaterialPage(Материалы selectedMaterial)
         {
             InitializeComponent();
@@ -35,6 +46,12 @@ namespace Production
                 ТекущееКолНаСкладе = -1;
             }
 
+            
+            currentMaterial2.Тип = _currentMaterial.Тип;
+            currentMaterial2.Наименование = _currentMaterial.Наименование;
+            currentMaterial2.МинКол = Convert.ToString(_currentMaterial.МинКол);
+            currentMaterial2.КолНаСкладе = Convert.ToString(_currentMaterial.КолНаСкладе);
+            currentMaterial2.НаименованияПоставщиков = Convert.ToString(_currentMaterial.НаименованияПоставщиков);
 
             DataContext = _currentMaterial;
             if (UserRights.User_ID == 2)
@@ -75,7 +92,18 @@ namespace Production
             {
                 MessageBox.Show(errors.ToString());
                 return;
-            }  
+            }
+
+            if (currentMaterial2.Тип == _currentMaterial.Тип && currentMaterial2.Наименование == _currentMaterial.Наименование &&
+                currentMaterial2.МинКол == Convert.ToString(_currentMaterial.МинКол) && currentMaterial2.КолНаСкладе == Convert.ToString(_currentMaterial.КолНаСкладе) &&
+                currentMaterial2.НаименованияПоставщиков == Convert.ToString(_currentMaterial.НаименованияПоставщиков))
+            {
+                if (MessageBox.Show("Данные не были изменены", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+                {
+                    Manager.MainFrame.GoBack();
+                }
+                return;
+            }
 
             if (_currentMaterial.id == 0)
                 Production_of_productsEntities2.GetContext().Материалы.Add(_currentMaterial);

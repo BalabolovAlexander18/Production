@@ -52,7 +52,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="1" Background="White">
+        <Grid x:Name="gridEditDel" Grid.Row="1" Background="White">
             <Button Click="btnAdd_Click" x:Name="btnAdd" Content="Добавить" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center"/>
             <Button Click="btnDelete_Click" x:Name="btnDelete" Content="Удалить" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center"/>
         </Grid>
