@@ -35,5 +35,6 @@
         <TextBox x:Name="tebSuppliers" Text="{Binding НаименованияПоставщиков, Mode=OneWay}" IsReadOnly="True" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
 
         <Button x:Name="btnSave" Grid.ColumnSpan="2" Grid.Row="6" Content="Сохранить" Click="btnSave_Click" ></Button>
+        <Image Grid.Column="1" HorizontalAlignment="Left" Height="203" Margin="367,44,0,0" Grid.RowSpan="4" VerticalAlignment="Top" Width="204" Source="/trolley-with-two-boxes_icon-icons.com_68113.png" Grid.Row="1"/>
     </Grid>
 </Page>

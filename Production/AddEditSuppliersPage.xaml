@@ -31,6 +31,7 @@
         <TextBox x:Name="tebINN" Text="{Binding ИНН}" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
         <TextBox x:Name="tebRating" Text="{Binding РейтингКачества}" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"/>
         <Button x:Name="btnSave" Grid.ColumnSpan="2" Grid.Row="5" Content="Сохранить" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnSave_Click"/>
+        <Image Grid.Column="1" Height="387" Margin="362,63,2,0" Grid.RowSpan="6" VerticalAlignment="Top" Source="/рабочий2.png"/>
 
 
     </Grid>

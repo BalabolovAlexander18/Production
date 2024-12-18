@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>group_people_people_military_1719.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -232,6 +235,16 @@
     <None Include="Resources\завод.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="trolley-with-two-boxes_icon-icons.com_68113.png" />
+    <Resource Include="Palet-Boxes_35544.png" />
+    <Resource Include="рабочий1.jpg" />
+    <Resource Include="sample_pharmacy_medicine_chemistry_lab_laboratory_blood_test_tube_icon_210665.png" />
+    <Resource Include="medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910.png" />
+    <Resource Include="trade_report_reports_documents_2351.png" />
+    <Resource Include="settings-cogwheel-button_icon-icons.com_72559.png" />
+    <Resource Include="gears_cogwheel_settings_icon_187078.png" />
+    <Resource Include="group_people_people_military_1719.ico" />
+    <Resource Include="assembly_production_line_manufacturing_process_mass_production_factory_automation_icon_261180.ico" />
     <Content Include="BaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BaseModel.edmx</DependentUpon>

@@ -14,6 +14,22 @@
         <Label Content="Пароль" FontSize="20" HorizontalAlignment="Center" Margin="0,136,0,0" VerticalAlignment="Top"/>
         <PasswordBox x:Name="PasBox" HorizontalAlignment="Center" Margin="0,181,0,0" VerticalAlignment="Top" Width="120"/>
         <Button Content="Зайти" FontSize="24" HorizontalAlignment="Center" Margin="0,252,0,0" VerticalAlignment="Top" Click="Button_Click" Height="35" Width="176"/>
+        <Image HorizontalAlignment="Left" Height="66" Margin="51,259,0,0" VerticalAlignment="Top" Width="69" Source="/gears_cogwheel_settings_icon_187078.png">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="1.126"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image HorizontalAlignment="Left" Height="62" Margin="572,72,0,0" VerticalAlignment="Top" Width="66" Source="/settings-cogwheel-button_icon-icons.com_72559.png"/>
+        <Image HorizontalAlignment="Left" Height="62" Margin="447,346,0,0" VerticalAlignment="Top" Width="66" Source="/settings-cogwheel-button_icon-icons.com_72559.png"/>
+        <Image HorizontalAlignment="Left" Height="102" Margin="136,72,0,0" VerticalAlignment="Top" Width="90" Source="/trade_report_reports_documents_2351.png"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="583,270,0,0" VerticalAlignment="Top" Width="100" Source="/medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910.png"/>
+        <Image HorizontalAlignment="Left" Height="55" Margin="683,173,0,0" VerticalAlignment="Top" Width="57" Source="/sample_pharmacy_medicine_chemistry_lab_laboratory_blood_test_tube_icon_210665.png"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="181,308,0,0" VerticalAlignment="Top" Width="100" Source="/Palet-Boxes_35544.png"/>
 
     </Grid>
 </Page>
