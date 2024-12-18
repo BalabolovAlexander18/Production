@@ -22,9 +22,7 @@ namespace Production
     {
         public LoginPage()
         {
-            UserRights.HeadingPage = "Аутентификация";
             InitializeComponent();
-            UserRights.HeadingPage = "Аутентификация";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

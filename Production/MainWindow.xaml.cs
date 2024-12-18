@@ -128,6 +128,10 @@ namespace Production
                         labHeading.Content = "Редактирование поставщика";
                     }
                 }
+                else if (Page is ExportPage)
+                {
+                    labHeading.Content = "Импорт данных";
+                }
             }
         }
     }

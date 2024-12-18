@@ -27,6 +27,7 @@ namespace Production
             {
                 btnSuppliers.IsEnabled = false;
                 btnHistoryMaterial.IsEnabled = false;
+                btnExport.IsEnabled = false;
             }
 
         }
@@ -44,6 +45,11 @@ namespace Production
         private void btnHistoryMaterial_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new HistoryMaterialsPage());
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate( new ExportPage());
         }
     }
 }

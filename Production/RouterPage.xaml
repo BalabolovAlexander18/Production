@@ -10,7 +10,7 @@
 
     <Grid>
         <Label Content="Страница перемещения" FontSize="20" HorizontalAlignment="Center" Margin="0,66,0,0" VerticalAlignment="Top"/>
-        <StackPanel Orientation="Horizontal" Margin="30" HorizontalAlignment="Center">
+        <WrapPanel Orientation="Horizontal" Margin="30" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="btnMaterials" Content="Материалы" Margin="20" FontSize="24" Height="71" Width="192" Click="btnMaterials_Click"/>
             <Button x:Name="btnSuppliers" Content="Поставщики" Margin="20" FontSize="24" Height="71" Width="192" Click="btnSuppliers_Click"/>
             <Button x:Name="btnHistoryMaterial" Margin="20" FontSize="24" Height="71" Width="192" Click="btnHistoryMaterial_Click">
@@ -19,6 +19,7 @@
                     <TextBlock Text="материалов"></TextBlock>
                 </StackPanel>
             </Button>
-        </StackPanel>
-            </Grid>
+            <Button x:Name="btnExport" Content="Экспортировать" Margin="20" FontSize="24" Height="71" Width="192" Click="btnExport_Click"/>
+        </WrapPanel>
+    </Grid>
 </Page>
