@@ -36,5 +36,15 @@
 
         <Button x:Name="btnSave" Grid.ColumnSpan="2" Grid.Row="6" Content="Сохранить" Click="btnSave_Click" ></Button>
         <Image Grid.Column="1" HorizontalAlignment="Left" Height="203" Margin="367,44,0,0" Grid.RowSpan="4" VerticalAlignment="Top" Width="204" Source="/trolley-with-two-boxes_icon-icons.com_68113.png" Grid.Row="1"/>
+        <Image x:Name="imMaterial" Grid.Row="0" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="92" Margin="83,5,0,0" Grid.RowSpan="2">
+            <Image.Source>
+                <Binding Path="Изображение">
+                    <Binding.TargetNullValue>
+                        <ImageSource>Resources/заглушка.png</ImageSource>
+                    </Binding.TargetNullValue>
+                </Binding>
+            </Image.Source>
+        </Image>
+        <Button x:Name="btnDownloadImage" Grid.Column="1" Content="Загрузить картинку" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnDownloadImage_Click"/>
     </Grid>
 </Page>

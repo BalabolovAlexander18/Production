@@ -20,7 +20,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate> 
                     <Border BorderBrush="Black" BorderThickness="2">
                         <Grid Margin="20" Width="700">
                             <Grid.ColumnDefinitions>

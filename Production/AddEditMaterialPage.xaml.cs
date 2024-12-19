@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +22,7 @@ namespace Production
     /// </summary>
     public partial class AddEditMaterialPage : Page
     {
+        byte[] image_bytes;
         public int? ТекущееКолНаСкладе;
         private Материалы _currentMaterial = new Материалы();
         CurrentMaterial currentMaterial2 = new CurrentMaterial();
@@ -31,6 +34,7 @@ namespace Production
             public string МинКол;
             public string КолНаСкладе;
             public string НаименованияПоставщиков;
+            public byte[] Изображение;
         }
 
         public AddEditMaterialPage(Материалы selectedMaterial)
@@ -52,6 +56,7 @@ namespace Production
             currentMaterial2.МинКол = Convert.ToString(_currentMaterial.МинКол);
             currentMaterial2.КолНаСкладе = Convert.ToString(_currentMaterial.КолНаСкладе);
             currentMaterial2.НаименованияПоставщиков = Convert.ToString(_currentMaterial.НаименованияПоставщиков);
+            currentMaterial2.Изображение = _currentMaterial.Изображение;
 
             DataContext = _currentMaterial;
             if (UserRights.User_ID == 2)
@@ -96,7 +101,7 @@ namespace Production
 
             if (currentMaterial2.Тип == _currentMaterial.Тип && currentMaterial2.Наименование == _currentMaterial.Наименование &&
                 currentMaterial2.МинКол == Convert.ToString(_currentMaterial.МинКол) && currentMaterial2.КолНаСкладе == Convert.ToString(_currentMaterial.КолНаСкладе) &&
-                currentMaterial2.НаименованияПоставщиков == Convert.ToString(_currentMaterial.НаименованияПоставщиков))
+                currentMaterial2.НаименованияПоставщиков == Convert.ToString(_currentMaterial.НаименованияПоставщиков) && currentMaterial2.Изображение == _currentMaterial.Изображение)
             {
                 if (MessageBox.Show("Данные не были изменены", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
                 {
@@ -130,6 +135,38 @@ namespace Production
                 };
                 Production_of_productsEntities2.GetContext().ИсторияИзмКолМатер.Add(TempHistoryMaterial);
                 Production_of_productsEntities2.GetContext().SaveChanges();
+            }
+        }
+
+        private void btnDownloadImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            try
+            {
+                image_bytes = File.ReadAllBytes(openFileDialog.FileName);
+                _currentMaterial.Изображение = image_bytes;
+                if (image_bytes != null)
+                {
+                    using (var stream = new MemoryStream(image_bytes))
+                    {
+                        BitmapImage bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.StreamSource = stream;
+                        bitmap.CacheOption = BitmapCacheOption.OnLoad; // Параметр кэширования
+                        bitmap.EndInit();
+                        bitmap.Freeze(); // Делаем BitmapImage потоко-независимым
+
+                        imMaterial.Source = bitmap; // Устанавливаем Source для imMaterial
+                    }
+                }
+            }
+            catch 
+            {
+                if (_currentMaterial.Изображение == null)
+                {
+                    MessageBox.Show("Выберите картинку!", "Рекомендация", MessageBoxButton.OK, MessageBoxImage.Warning);
+                } 
             }
         }
     }
