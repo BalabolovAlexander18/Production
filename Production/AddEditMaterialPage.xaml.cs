@@ -141,25 +141,29 @@ namespace Production
         private void btnDownloadImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files | *.jpg;*.jpeg;*.png;*.bmp;*.gif";
             openFileDialog.ShowDialog();
             try
             {
                 image_bytes = File.ReadAllBytes(openFileDialog.FileName);
                 _currentMaterial.Изображение = image_bytes;
-                if (image_bytes != null)
-                {
-                    using (var stream = new MemoryStream(image_bytes))
-                    {
-                        BitmapImage bitmap = new BitmapImage();
-                        bitmap.BeginInit();
-                        bitmap.StreamSource = stream;
-                        bitmap.CacheOption = BitmapCacheOption.OnLoad; // Параметр кэширования
-                        bitmap.EndInit();
-                        bitmap.Freeze(); // Делаем BitmapImage потоко-независимым
 
-                        imMaterial.Source = bitmap; // Устанавливаем Source для imMaterial
-                    }
-                }
+                imMaterial.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+                //Второй способ для загрузки изображения в Image!!!
+                //if (image_bytes != null)
+                //{
+                //    using (var stream = new MemoryStream(image_bytes))
+                //    {
+                //        BitmapImage bitmap = new BitmapImage();
+                //        bitmap.BeginInit();
+                //        bitmap.StreamSource = stream;
+                //        bitmap.CacheOption = BitmapCacheOption.OnLoad; // Параметр кэширования
+                //        bitmap.EndInit();
+                //        bitmap.Freeze(); // Делаем BitmapImage потоко-независимым
+
+                //        imMaterial.Source = bitmap; // Устанавливаем Source для imMaterial
+                //    }
+                //}
             }
             catch 
             {

@@ -9,13 +9,18 @@
       Title="ExportPage">
 
     <Grid>
-        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="btnExportS" FontSize="24" Height="71" Width="192" Click="btnExportS_Click">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Экспортировать"></TextBlock>
-                    <TextBlock Text="поставщиков" HorizontalAlignment="Center"></TextBlock>
-                </StackPanel>
-            </Button>
-        </WrapPanel>
+        <GroupBox Width="450" Height="200" Header="Экспортировать">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="48*"/>
+                </Grid.RowDefinitions>
+                <TextBlock FontSize="30" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Поставщиков"></TextBlock>
+                <WrapPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="в Excel" x:Name="btnExportSE" FontSize="24" Height="71" Width="192" Click="btnExportSE_Click"></Button>
+                    <Button Content="в Word" x:Name="btnExportSW" FontSize="24" Height="71" Width="192" Click="btnExportSW_Click"></Button>
+                </WrapPanel>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Page>

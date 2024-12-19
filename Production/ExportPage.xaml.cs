@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Word;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
+using Word = Microsoft.Office.Interop.Word;
+using Page = System.Windows.Controls.Page;
 
 namespace Production
 {
@@ -26,7 +29,7 @@ namespace Production
             InitializeComponent();
         }
 
-        private void btnExportS_Click(object sender, RoutedEventArgs e)
+        private void btnExportSE_Click(object sender, RoutedEventArgs e)
         {
             var NameS = Production_of_productsEntities2.GetContext().Поставщики.Select(p => p.НаименПоставщ).ToList();
             var TypeS = Production_of_productsEntities2.GetContext().Поставщики.Select(p => p.Тип).ToList();
@@ -63,6 +66,56 @@ namespace Production
                     if (supplier.НаименПоставщ == NameS[i])
                         workxheet.Cells[6][2] = supplier.ВсеМатериалы;
                 workxheet.Columns.AutoFit();
+            }
+            application.Visible = true;
+        }
+
+        private void btnExportSW_Click(object sender, RoutedEventArgs e)
+        {
+            var NameS = Production_of_productsEntities2.GetContext().Поставщики.Select(p => p.НаименПоставщ).ToList();
+            var TypeS = Production_of_productsEntities2.GetContext().Поставщики.Select(p => p.Тип).ToList();
+            var INNS = Production_of_productsEntities2.GetContext().Поставщики.Select(p => p.ИНН).ToList();
+            var ReitingS = Production_of_productsEntities2.GetContext().Поставщики.Select(p => p.РейтингКачества).ToList();
+            var DataNachS = Production_of_productsEntities2.GetContext().Поставщики.Select(p => p.ДатаНачалаРаб).ToList();
+
+            var application = new Word.Application();
+
+            Word.Document document = application.Documents.Add();
+
+            for (int i = 0; i < NameS.Count; i++)
+            {
+                Word.Paragraph supplierParagraph = document.Paragraphs.Add();
+                Word.Range supplierRange = supplierParagraph.Range;
+                supplierRange.Text = NameS[i];
+                supplierParagraph.set_Style("Обычный");
+                supplierRange.InsertParagraphAfter();
+
+                Word.Paragraph tableParagraph = document.Paragraphs.Add();
+                Word.Range tableRange = tableParagraph.Range;
+                Word.Table paymentsTable = document.Tables.Add(tableRange, 2, 3);
+                paymentsTable.Borders.InsideLineStyle = paymentsTable.Borders.OutsideLineStyle
+                    = Word.WdLineStyle.wdLineStyleSingle;
+                paymentsTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+
+                Word.Range cellRange;
+
+                cellRange = paymentsTable.Cell(1, 1).Range;
+                cellRange.Text = "Наименование";
+                cellRange = paymentsTable.Cell(1, 2).Range;
+                cellRange.Text = "Тип";
+                cellRange = paymentsTable.Cell(1, 3).Range;
+                cellRange.Text = "Рейтинг";
+
+                cellRange = paymentsTable.Cell(2, 1).Range;
+                cellRange.Text = NameS[i];
+                cellRange = paymentsTable.Cell(2, 2).Range;
+                cellRange.Text = TypeS[i];
+                cellRange = paymentsTable.Cell(2, 3).Range;
+                cellRange.Text = ReitingS[i].ToString();
+
+                paymentsTable.Rows[1].Range.Bold = 1;
+                paymentsTable.Rows[1].Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
             }
             application.Visible = true;
         }
